@@ -45,8 +45,8 @@ app.post("chatToDocument", async (c) => {
 		temperature: 0.5,
 	});
 
-  const response = chatCompletion.choices[0].message.content;
-	return c.json({message: response});
+	const response = chatCompletion.choices[0].message.content;
+	return c.json({ message: response });
 });
 
 app.post("/translateDocument", async (c) => {
@@ -63,6 +63,26 @@ app.post("/translateDocument", async (c) => {
 	});
 
 	return new Response(JSON.stringify(response));
+});
+
+app.post("/summarizeDocument", async (c) => {
+	const { documentData } = await c.req.json();
+	const messages: any[] = [
+		{
+			role: "system",
+			content:
+				"write the answer as a short paragraph, simplify and concise and casual",
+		},
+		{
+			role: "user",
+			content: "anwer this based on the question" + documentData,
+		},
+	];
+	const response = await c.env.AI.run("@cf/meta/llama-3.2-1b-instruct" as any, {
+		messages,
+	});
+
+	return c.json({ message: response });
 });
 
 export default app;

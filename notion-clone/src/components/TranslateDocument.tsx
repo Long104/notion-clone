@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/select";
 import { BotIcon, LanguagesIcon } from "lucide-react";
 import { toast } from "sonner";
-import Markdown from "react-markdown"
+import Markdown from "react-markdown";
 
 type Language =
 	| "english"
@@ -35,7 +35,8 @@ type Language =
 	| "hindi"
 	| "russian"
 	| "japanese"
-  | "thai"
+	| "thai"
+	| "burmese";
 
 const languages: Language[] = [
 	"english",
@@ -48,7 +49,8 @@ const languages: Language[] = [
 	"hindi",
 	"russian",
 	"japanese",
-  "thai"
+	"thai",
+	"burmese",
 ];
 
 const TranslateDocument = ({ doc }: { doc: Y.Doc }) => {
@@ -106,7 +108,9 @@ const TranslateDocument = ({ doc }: { doc: Y.Doc }) => {
 									GPT {isPending ? "is thinking..." : "Says"}
 								</p>
 							</div>
-              <div>{isPending ? "Thinking..." : <Markdown>{summary}</Markdown>}</div>
+							<div>
+								{isPending ? "Thinking..." : <Markdown>{summary}</Markdown>}
+							</div>
 						</div>
 					)}
 					<form onSubmit={handleAskQuestion} className="flex gap-2">
