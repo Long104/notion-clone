@@ -71,14 +71,16 @@ app.post("/summarizeDocument", async (c) => {
 		{
 			role: "system",
 			content:
-				"write the answer as a short paragraph, simplify and concise and casual",
+				"you are an senior developer and you are helping the user to answer their problem.",
 		},
 		{
 			role: "user",
-			content: "anwer this based on the question" + documentData,
+			content:
+				"answer this based on the question. If question that is includes multiple-choice options (e.g., A, B, C, D or 1,2,3,4 or if it has set of choice answer), analyze the options and select the best possible answer without explanation just only the choice, but if input has no choice and it have keyword  but only question such as explain..., describe... please explain the answer" +
+				documentData,
 		},
 	];
-	const response = await c.env.AI.run("@cf/meta/llama-3.2-1b-instruct" as any, {
+	const response = await c.env.AI.run("@cf/meta/llama-3.2-3b-instruct" as any, {
 		messages,
 	});
 
