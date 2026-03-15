@@ -36,6 +36,7 @@
     "react-dom": "^19.0.0",
     "react-firebase-hooks": "^5.1.1",
     "react-markdown": "^9.0.1",
+    "shiki": "^1.29.2",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
